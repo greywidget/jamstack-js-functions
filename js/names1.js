@@ -1,3 +1,7 @@
+function setName(firstName, lastName) {
+    document.getElementById('fullName').innerHTML = `${firstName} ${lastName}`;
+}
+
 function buildFullName() {
     var firstName = document.getElementById('firstName').value;
     var lastName = document.getElementById('surname').value;
@@ -6,5 +10,5 @@ function buildFullName() {
         return;
     }
 
-    document.getElementById('fullName').innerHTML = `${firstName} ${lastName}`;
+    setName(firstName, lastName);
 }
