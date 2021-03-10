@@ -65,7 +65,6 @@
                   name inside a function. Then update the function to accept a first
                   and last name as arguments.</p>
 
-<!-- start -->
 <div class="row">
 <div class="col-sm-6">
   <form class='needs-validation' name='contact' novalidate><input type='hidden' name='form-name' value='contact' />
@@ -84,15 +83,15 @@
     </div>
   </form>
   <script>
-  // Example starter JavaScript for disabling form submissions if there are invalid fields
-  (function () {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-  
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict'
+      
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.querySelectorAll('.needs-validation')
+      
+      // Loop over them and prevent submission
+      Array.prototype.slice.call(forms)
       .forEach(function (form) {
         form.addEventListener('submit', function (event) {
           if (!form.checkValidity()) {
@@ -102,16 +101,18 @@
           // Force the page not to refresh, since there is no server and we just want the values
           event.preventDefault()
           event.stopPropagation()
-
-  
+          
+          
           form.classList.add('was-validated')
         }, false)
       })
-  })()
-  </script>
+    })()
+    </script>
+  </div>
+  <div class="col-sm-6 text-center">
+    <p id="fullName" class="text-danger pt-4 fs-4"></p>
   </div>
 </div>
-<!-- end -->
 
 <div class="bg-white mt-5">
 <pre>
@@ -130,7 +131,6 @@ function buildFullName() {
   setName(firstName, lastName);
 }</pre>
                 </div>
-                <p id="fullName" class="bg-white"></p>
             </div>
         </div>
       </main>
