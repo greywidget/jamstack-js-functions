@@ -6,7 +6,7 @@
     <title>Functions and Control Flow</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index.css">
-    <script type="text/javascript" src="/js/tipcalc.js"></script>
+    <script type="text/javascript" src="/js/tempC.js"></script>
   </head>
 
   <body class="bg-light">
@@ -23,7 +23,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+              <a class="nav-link" href="index.html">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="task1.html">Task1</a>
@@ -35,7 +35,7 @@
               <a class="nav-link" href="task3.html">Task3</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="task4.html">Task4</a>
+              <a class="nav-link active" aria-current="page" href="task4.html">Task4</a>
             </li>
           </ul>
         </div>
@@ -60,16 +60,76 @@
 
         <div class="row justify-content-center pt-3">
             <div class="col-sm-10">
-                <h1>Functions and Control Flow</h1>
-                <p>This week we started looking at <strong>Functions</strong> and <strong>Control Flow</strong>. We had a brief introduction
-                    to <strong>scope</strong> and played around with some <strong>booleans</strong>.
-                </p>
-                <p>In the class we performed the exercises by having a <strong>script</strong> in 
-                the main html which output to the console using <code>console.log</code> and
-                then we reviewed the output via <a href="https://developers.google.com/web/tools/chrome-devtools">
-                  Dev Tools</a>. To make viewing easier, I have used some simple javascript to display the output in
-                  previously empty paragraphs upon the click of a button.</p>
-                <p>We were set some simple tasks and they can be accessed on their own pages via the navbar.</p>
+              <h1>Task 4</h1>
+                <p class="lead">Make a variable called <strong>temperature</strong>. Write some code
+                that tells you to put on a coat if it is below 50 degrees.</p>
+
+<!-- start -->
+<div class="row">
+<div class="col-sm-6">
+  <form class='needs-validation' name='contact' novalidate><input type='hidden' name='form-name' value='contact' />
+    <div class="mb-3">
+      <label for="temperature" class="form-label">Temperature</label>
+      <select class="form-select" aria-label="select temperature" id="temperature" name="temperature" value="" required>
+      <option selected disabled value="">Please select the temperature</option>
+      <option value="10">10</option>
+      <option value="25">25</option>
+      <option value="40">40</option>
+      <option value="55">55</option>
+      </select>
+      <div class="invalid-feedback">Please select the temperature</div>
+    </div>
+    <div class="d-grid">
+      <button class="btn btn-secondary text-warning" type="submit" onclick="coatCheck()">Submit</button>
+    </div>
+  </form>
+  <script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+  (function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          // Force the page not to refresh, since there is no server and we just want the values
+          event.preventDefault()
+          event.stopPropagation()
+
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+  </script>
+  </div>
+</div>
+<!-- end -->
+
+                <div class="bg-white mt-5">
+                  <pre>
+function coatCheck() {
+  var temperature;
+  var dressAdvice;
+  temperature = document.getElementById('temperature').value;
+  if (temperature == "") {
+      return;
+  }
+
+  // All dropdown values are valid numerics so not validating here.
+  tempC = parseInt(temperature);
+  dressAdvice = ( tempC < 50 ) ? "Best you wear a coat!" : "Pants and vest are fine!";
+  document.getElementById('dressSense').innerHTML = dressAdvice;
+}</pre>
+                </div>
+                <p id="dressSense" class="bg-white"></p>
             </div>
         </div>
       </main>
