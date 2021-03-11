@@ -6,7 +6,7 @@
     <title>Functions and Control Flow</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index.css">
-    <script type="text/javascript" src="/js/names2.js"></script>
+    <script type="text/javascript" src="/js/complexTemp.js"></script>
   </head>
 
   <body class="bg-light">
@@ -32,7 +32,7 @@
               <a class="nav-link" href="task2.html">Task2</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="task3.html">Task3</a>
+              <a class="nav-link" href="task3.html">Task3</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="task4.html">Task4</a>
@@ -41,7 +41,7 @@
               <a class="nav-link" href="task5.html">Task5</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="task6.html">Task6</a>
+              <a class="nav-link active" aria-current="page" href="task6.html">Task6</a>
             </li>
           </ul>
         </div>
@@ -66,26 +66,36 @@
 
         <div class="row justify-content-center pt-3">
             <div class="col-sm-10">
-              <h1>Task 3</h1>
-                <p class="lead">Add a <strong>return</strong> statement to your <em>name</em>
-                function. Use that function to set the value of a variable.</p>
+              <h1>Task 6</h1>
+                <p class="lead">This is the same as <strong>Task5</strong>, but we need to use a <em>Logical Operator</em>.
+                As a reminder - here are the requirements again:</p>
+                <ul>
+                  <li>If it's less than 50 degrees, <em>wear a coat</em>.</li>
+                  <li>If it's less than 30 degrees, <em>wear a coat and hat</em>.</li>
+                  <li>If it's less than 0 degrees, <em>stay inside</em></li>
+                  <li>Otherwise, <em>pants and vest are fine</em>.</li>
+                </ul>
 
 <!-- start -->
 <div class="row">
 <div class="col-sm-6">
   <form class='needs-validation' name='contact' novalidate><input type='hidden' name='form-name' value='contact' />
     <div class="mb-3">
-      <label for="firstName" class="form-label">First Name</label>
-      <input type="input" class="form-control" name="firstName" id="firstName" required>
-      <div class="invalid-feedback">Please enter your First Name</div>
-    </div>
-    <div class="mb-3">
-      <label for="surname" class="form-label">Last Name</label>
-      <input type="input" class="form-control" name="surname" id="surname" required>
-      <div class="invalid-feedback">Please enter your Surname</div>
+      <label for="temperature" class="form-label">Temperature</label>
+      <select class="form-select" aria-label="select temperature" id="temperature" name="temperature" value="" required>
+      <option selected disabled value="">Please select the temperature</option>
+      <option value="-1">-1</option>
+      <option value="0">0</option>
+      <option value="25">25</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+      <option value="55">55</option>
+      </select>
+      <div class="invalid-feedback">Please select the temperature</div>
     </div>
     <div class="d-grid">
-      <button class="btn btn-secondary text-warning" type="submit" onclick="getName()">Submit</button>
+      <button class="btn btn-secondary text-warning" type="submit" onclick="clothesCheckWithLogicalOperator()">Submit</button>
     </div>
   </form>
   <script>
@@ -116,26 +126,37 @@
   </script>
   </div>
   <div class="col-sm-6 text-center">
-    <p id="fullName" class="text-danger pt-4 fs-4"></p>
+    <p id="dressSense" class="text-danger pt-4 fs-4"></p>
   </div>
 </div>
 <!-- end -->
 
                 <div class="bg-white mt-5">
                   <pre>
-function buildName(firstName, lastName) {
-  return `${firstName} ${lastName}`;
-}
-
-function getName() {
-  var firstName = document.getElementById('firstName').value;
-  var lastName = document.getElementById('surname').value;
-  if (firstName == "" || lastName == "") {
+function clothesCheckWithLogicalOperator() {
+  var temperature;
+  var dressAdvice;
+  temperature = document.getElementById('temperature').value;
+  if (temperature == "") {
       return;
   }
 
-  fullName = buildName(firstName, lastName);
-  document.getElementById('fullName').innerHTML = fullName;
+  // All dropdown values are valid numerics so not validating here.
+  var tempC = parseInt(temperature);
+  var dressAdvice;
+
+  // This is a bit more complex than the Task5 solution, but 
+  // the checks can be in any order - hence I've moved them around.
+  if (tempC >= 50)
+      dressAdvice = 'Pants and Vest are fine';
+  else if (tempC < 0)
+      dressAdvice = 'Stay Inside';
+  else if (tempC < 30 && tempC >= 0)
+      dressAdvice = 'Wear a Coat and a Hat';
+  else if (tempC < 50 && tempC >= 30)
+          dressAdvice = 'Wear a Coat';
+  
+  document.getElementById('dressSense').innerHTML = dressAdvice;
 }</pre>
                 </div>
             </div>

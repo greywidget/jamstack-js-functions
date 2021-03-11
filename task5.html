@@ -40,6 +40,9 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="task5.html">Task5</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="task6.html">Task6</a>
+            </li>
           </ul>
         </div>
 
@@ -141,7 +144,8 @@ function clothesCheck() {
   var tempC = parseInt(temperature);
   var dressAdvice;
 
-  // The Zen of Python point 5: Flat is better than nested...
+  // This is a simple solution but it depends on the tests being in
+  // the correct sequence.
   if (tempC >= 50)
       dressAdvice = 'Pants and Vest are fine';
   else if (tempC >= 30)

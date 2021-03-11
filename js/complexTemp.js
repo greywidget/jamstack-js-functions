@@ -1,4 +1,4 @@
-function clothesCheck() {
+function clothesCheckWithLogicalOperator() {
     var temperature;
     var dressAdvice;
     temperature = document.getElementById('temperature').value;
@@ -10,16 +10,16 @@ function clothesCheck() {
     var tempC = parseInt(temperature);
     var dressAdvice;
 
-    // This is a simple solution, but it depends on the tests being in
-    // the correct sequence.
+    // This is a bit more complex than the Task5 solution, but 
+    // the checks can be in any order - hence I've moved them around.
     if (tempC >= 50)
         dressAdvice = 'Pants and Vest are fine';
-    else if (tempC >= 30)
-        dressAdvice = 'Wear a Coat';
-    else if (tempC >= 0)
-        dressAdvice = 'Wear a Coat and a Hat';
-    else
+    else if (tempC < 0)
         dressAdvice = 'Stay Inside';
-
+    else if (tempC < 30 && tempC >= 0)
+        dressAdvice = 'Wear a Coat and a Hat';
+    else if (tempC < 50 && tempC >= 30)
+            dressAdvice = 'Wear a Coat';
+    
     document.getElementById('dressSense').innerHTML = dressAdvice;
 }
