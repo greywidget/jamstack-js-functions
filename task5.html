@@ -6,7 +6,7 @@
     <title>Functions and Control Flow</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/index.css">
-    <script type="text/javascript" src="/js/tempC.js"></script>
+    <script type="text/javascript" src="/js/moreTemp.js"></script>
   </head>
 
   <body class="bg-light">
@@ -35,10 +35,10 @@
               <a class="nav-link" href="task3.html">Task3</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="task4.html">Task4</a>
+              <a class="nav-link" href="task4.html">Task4</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="task5.html">Task5</a>
+              <a class="nav-link active" aria-current="page" href="task5.html">Task5</a>
             </li>
           </ul>
         </div>
@@ -63,9 +63,14 @@
 
         <div class="row justify-content-center pt-3">
             <div class="col-sm-10">
-              <h1>Task 4</h1>
-                <p class="lead">Make a variable called <strong>temperature</strong>. Write some code
-                that tells you to put on a coat if it is below 50 degrees.</p>
+              <h1>Task 5</h1>
+                <p class="lead">This is an extension of <strong>Task4</strong>. Modify the temperature function so that:</p>
+                <ul>
+                  <li>If it's less than 50 degrees, <em>wear a coat</em>.</li>
+                  <li>If it's less than 30 degrees, <em>wear a coat and hat</em>.</li>
+                  <li>If it's less than 0 degrees, <em>stay inside</em></li>
+                  <li>Otherwise, <em>pants and vest are fine</em>.</li>
+                </ul>
 
 <!-- start -->
 <div class="row">
@@ -75,15 +80,18 @@
       <label for="temperature" class="form-label">Temperature</label>
       <select class="form-select" aria-label="select temperature" id="temperature" name="temperature" value="" required>
       <option selected disabled value="">Please select the temperature</option>
-      <option value="10">10</option>
+      <option value="-1">-1</option>
+      <option value="0">0</option>
       <option value="25">25</option>
+      <option value="30">30</option>
       <option value="40">40</option>
+      <option value="50">50</option>
       <option value="55">55</option>
       </select>
       <div class="invalid-feedback">Please select the temperature</div>
     </div>
     <div class="d-grid">
-      <button class="btn btn-secondary text-warning" type="submit" onclick="coatCheck()">Submit</button>
+      <button class="btn btn-secondary text-warning" type="submit" onclick="clothesCheck()">Submit</button>
     </div>
   </form>
   <script>
@@ -121,7 +129,7 @@
 
                 <div class="bg-white mt-5">
                   <pre>
-function coatCheck() {
+function clothesCheck() {
   var temperature;
   var dressAdvice;
   temperature = document.getElementById('temperature').value;
@@ -130,8 +138,19 @@ function coatCheck() {
   }
 
   // All dropdown values are valid numerics so not validating here.
-  tempC = parseInt(temperature);
-  dressAdvice = ( tempC < 50 ) ? "Best you wear a coat!" : "Pants and vest are fine!";
+  var tempC = parseInt(temperature);
+  var dressAdvice;
+
+  // The Zen of Python point 5: Flat is better than nested...
+  if (tempC >= 50)
+      dressAdvice = 'Pants and Vest are fine';
+  else if (tempC >= 30)
+      dressAdvice = 'Wear a Coat';
+  else if (tempC >= 0)
+      dressAdvice = 'Wear a Coat and a Hat';
+  else
+      dressAdvice = 'Stay Inside';
+
   document.getElementById('dressSense').innerHTML = dressAdvice;
 }</pre>
                 </div>
